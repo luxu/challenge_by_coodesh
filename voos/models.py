@@ -3,7 +3,9 @@ from django.db import models
 
 class Voo(models.Model):
     key = models.IntegerField(
-        unique=True
+        unique=True,
+        null=True,
+        blank=True
     )
     title = models.CharField(
         max_length=255

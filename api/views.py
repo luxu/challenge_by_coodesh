@@ -1,3 +1,5 @@
+import datetime
+
 from django.http import JsonResponse
 
 from rest_framework import status
@@ -12,7 +14,7 @@ from voos.models import Voo
 def index(request):
     return JsonResponse({
         "status": "ok",
-        "message": "Back-end Challenge 2021 🏅 - Space Flight News"
+        "message": f"Back-end Challenge {datetime.datetime.now().year} 🏅 - Space Flight News"
     })
 
 
@@ -26,15 +28,9 @@ def articles(request):
 @api_view(['GET'])
 def article_key(request, key):
     if request.method == 'GET':
-        try:
-            article = Voo.objects.filter(key=key)
-            serializer = ArticlesSerializer(article, many=True)
-            return Response(serializer.data)
-        except Voo.DoesNotExist:
-            return Response(
-                f'Artigo com este key..:{key} não existe!',
-                status=status.HTTP_400_BAD_REQUEST
-            )
+        article = Voo.objects.filter(key=key)
+        serializer = ArticlesSerializer(article, many=True)
+        return Response(serializer.data)
 
 
 @api_view(['POST'])
