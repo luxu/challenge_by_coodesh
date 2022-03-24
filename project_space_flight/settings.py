@@ -9,6 +9,8 @@ from sentry_sdk.integrations.django import DjangoIntegration
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
+ROOT_DIR = Path(__file__).resolve().parent
+
 
 SECRET_KEY = config('SECRET_KEY')
 
@@ -93,6 +95,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(ROOT_DIR, "staticfiles")
 
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
