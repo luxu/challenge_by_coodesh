@@ -5,9 +5,7 @@ from requests import get
 
 @pytest.fixture
 def resp(client):
-    # resp = client.get('https://api.spaceflightnewsapi.net/v3/articles')
-    resp = get('https://api.spaceflightnewsapi.net/v3/articles')
-    return resp
+    return get('https://api.spaceflightnewsapi.net/v3/articles')
 
 
 def test_status_code(resp):

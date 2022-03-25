@@ -41,9 +41,7 @@ def artigo(db):
 
 @pytest.fixture
 def generate_token(client, django_user_model):
-    kwargs = {}
-    kwargs['username'] = "user1"
-    kwargs['password'] = "bar"
+    kwargs = {'username': "user1", 'password': "bar"}
     django_user_model.objects.create_user(**kwargs)
     payload = kwargs
     url = reverse('token_obtain_pair')
@@ -57,8 +55,7 @@ def generate_token(client, django_user_model):
 
 @pytest.fixture
 def resp(client):
-    resp = client.get('https://127.0.0.1:8000')
-    return resp
+    return client.get('https://127.0.0.1:8000')
 
 
 @pytest.fixture
@@ -72,33 +69,5 @@ def create_user(db, django_user_model):
     return make_user
 
 
-def test_lista_de_artigos(client, artigo):
-    url = reverse('articles')
-    response = client.get(url)
-    assert len(response.json()) > 0
-
-
-def test_artigo_presente_no_banco(client, artigo):
-    url = reverse(
-        'article_details', kwargs={'key': '1221'}
-    )
-    response = client.get(url)
-    assert len(response.json()) > 0
-
-
 def test_generate_token(generate_token):
     assert generate_token is not None
-
-# def test_criar_artigo(client, generate_token):
-#     url = reverse('article_new')
-#     headers = {
-#         'Authorization': f'Bearer {generate_token}',
-#         'Content-Type': 'application/json'
-#     }
-#     response = client.post(
-#         url,
-#         headers=headers,
-#         data=dados_artigo,
-#         format='json',
-#     )
-#     assert response.status_code == 200
