@@ -1,7 +1,6 @@
 import os
 from functools import partial
 from pathlib import Path
-from datetime import timedelta
 from decouple import config, Csv
 import dj_database_url
 import sentry_sdk
