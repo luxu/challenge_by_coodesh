@@ -54,20 +54,29 @@ python api_spaceflight.py
 
 ### Melhor maneira de acessar os endpoints é através do programa INSOMNIA
 
+Todos artigos tem limite de 5 registros por vez, se quiser navegar pelas páginas:
+````
+http://localhost:8000/articles/?page=3
+````
+
 Acesso sem TOKEN
 ````
-[GETT]http://127.0.0.1:8000/articles/ -> Lista todos os artigos da base
-[GETT]http://127.0.0.1:8000/article_details/key/ -> Lista de um artigo específico
+[GET]http://localhost:8000/articles/ -> Lista todos os artigos da base
+[GET]http://localhost:8000/article_details/key/ -> Lista de um artigo específico
 ````
 Acesso com TOKEN
 ````
-[POST]http://127.0.0.1:8000/article/ -> Cria um novo artigo
-[PUT]http://127.0.0.1:8000/article/key/ -> Edita um novo artigo
-[DELETE]http://127.0.0.1:8000/article_delete/key/ -> Deleta um artigo
+[POST]http://localhost:8000/article/ -> Cria um novo artigo
+[PUT]http://localhost:8000/article/key/ -> Edita um novo artigo
+[DELETE]http://localhost:8000/article_delete/key/ -> Deleta um artigo
 ````
 Para gerar o TOKEN é só acessar o endpoint a seguir e logar
 ````
-[POST]http://127.0.0.1:8000/api/token/
+[POST]http://localhost:8000/api/token/
 ````
 
+Testar DEMO:
+````
+https://intense-eyrie-53568.herokuapp.com/
+````
 ## ***This is a challenge by Coodesh***

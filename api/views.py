@@ -1,12 +1,14 @@
 import datetime
 
 from django.http import JsonResponse
+# from django.conf import settings
 
-from rest_framework import status
+from rest_framework import status, viewsets
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
+from api.pagination import CustomBlogResultsSetPagination
 from api.serializer import ArticlesSerializer
 from voos.models import Voo
 
@@ -18,11 +20,10 @@ def index(request):
     })
 
 
-@api_view(['GET'])
-def articles(request):
-    articles = Voo.objects.all()
-    serializer = ArticlesSerializer(articles, many=True)
-    return Response(serializer.data)
+class ArticlesViewSet(viewsets.ModelViewSet):
+    queryset = Voo.objects.all()
+    serializer_class = ArticlesSerializer
+    pagination_class = CustomBlogResultsSetPagination
 
 
 @api_view(['GET'])
